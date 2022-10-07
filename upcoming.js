@@ -1,8 +1,11 @@
+console.log(currentDate);
 let container = document.getElementById("cartas-home");
 for (i = 0; i < events.length; i++) {
-  let cartas = document.createElement("div");
-  cartas.className = "card my-4";
-  cartas.innerHTML += `
+   
+    if (events[i].date > currentDate){
+    let cartas = document.createElement("div");
+    cartas.className = "card my-4";
+    cartas.innerHTML += `
   <div class="card ">
                 <img src="${events[i].image}" class=" imgcards card-img-top" alt="Imagen de cine">
                 <div class="card-body text-center">
@@ -15,6 +18,6 @@ for (i = 0; i < events.length; i++) {
                 </div>
             </div>
   `;
-
-  container.appendChild(cartas);
+  console.log(events[i].date);
+    container.appendChild(cartas);}
 }

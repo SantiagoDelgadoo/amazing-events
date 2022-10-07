@@ -1,0 +1,326 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif; 
+}
+
+.card-title {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+h2 {
+    color: rgb(175, 39, 175);
+    font-weight: bold !important;
+    font-size: 55px !important;
+}
+
+main {
+    min-height: 62.5vh; 
+    width: 100%;  
+}
+
+.logo {
+    width: 150px;
+}
+
+header {
+    min-height: 15vh;
+}
+.enlacenav {
+    background-color: rgb(175, 39, 175);
+    color: violet!important;
+    border: solid 2px violet;
+    border-radius: 10px;
+}
+
+.enlacenav:hover {
+    background-color: rgb(82, 7, 82);
+    transition-duration: 350ms;
+    color: white !important;
+}
+
+.homenav {
+    background-color: rgb(69, 69, 129);
+    color: white !important;
+    border: none;
+}
+
+
+.card {
+    width: 400px;
+    height: 400px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    transition-duration: 280ms;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+}
+
+.containercards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.boton {
+    background-color: rgb(175, 39, 175) !important;
+    color: violet !important;
+    border: 0 !important;
+}
+
+.boton:hover {
+    background-color: rgb(69, 69, 129) !important;
+    color: white !important;
+}
+
+.carousel-item {
+    height: 70vh;
+}
+
+#primerafotocarou {
+    background-size: cover;
+    background-image: url(./recursos/img-para-carousel3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+#segundafotocarou {
+    background-image: url(./recursos/carousel-dj.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+#tercerafotocarou {
+    background-image: url(./recursos/img-carousel.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+.titulo {
+    height: 10vh;
+    width: 100%;
+    border-bottom: 3px solid violet;
+    margin-bottom: 16px;
+}
+
+footer {
+    width: 100%;
+    height: 15vh;
+    background-color: violet;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logosredessociales {
+    width: 55px;
+}
+
+.colorboton {
+    background-color: rgb(175, 39, 175) !important;
+    color: violet !important;    
+}
+
+.textofooter {
+    font-size: 30px; 
+    color: rgb(175, 39, 175);
+    font-weight: bold;
+} 
+
+.redessociales {
+    display: flex;
+    align-items: flex-start;
+    justify-items: flex-start;
+    gap: 32px;
+}
+
+.tamañoform {
+    width: 350px;
+    border: solid 3px;
+    border-color: rgb(175, 39, 175) !important;
+}
+
+.formulariomensaje {
+    width: 350px;
+    height: 60px;
+}
+
+table{
+    border: solid 2px black;
+    width: 150vh;
+}
+
+table tbody tr td {
+    border: solid 1px black;
+}
+
+.tablastr {
+    background-color: rgb(175, 39, 175);
+}
+
+.segundacategoria {
+    background-color: violet !important;
+}
+
+
+.formularioboton {   
+    background-color: rgb(175, 39, 175);
+    color: violet;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.formularios {
+    font-weight: bold;
+}
+
+/* <--------------------------------------------DETAILS-------------------------------------------------------------> */
+
+.containercard1 {
+    background-color: rgb(226, 189, 195);
+    border: 3px solid purple;
+    border-radius: 10px;
+    width: 70%;
+    display: flex;
+    height: 60vh;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.maindos {
+    min-height: 62.5vh; 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.imagencine  {
+    width: 50%;
+}
+
+.parrafoytitulo {
+    width: 50%;
+    margin: 16px;
+    font-size: 25px;
+}
+
+.tamañoimg {
+    width: 425px;
+    height: 250px;
+    object-fit: cover;
+    display: flex;
+    margin: 16px;
+    border-radius: 25px;
+}
+
+.subtitulocards {
+    font-weight: bold;
+    font-size: 75px !important;
+}
+
+@media screen and (max-width: 768px) {
+
+    .logo {
+        width: 130px;
+    }
+
+    form{
+        text-align: center;
+        flex-wrap: wrap;
+        margin-left: 18px;
+    }
+    .colorboton {
+    margin-right: 32px;
+    }
+    .card {
+        width: 280px;
+        height: 280px;
+    }
+    table {
+        width: 70vh;
+    }
+
+    .containercard1 {
+        border-radius: 10px;
+        width: 65%;
+        height: 50vh;
+    }
+
+    .tamañoimg {
+        width: 220px;
+        height: 190px;
+}
+.subtitulocards {
+    font-weight: bold;
+    font-size: 30px !important;
+}
+.parrafoytitulo {
+    font-size: 16px;
+}
+}
+@media screen and (max-width: 425px) {
+    .logo {
+        width: 85px;
+    }
+
+    .card {
+        gap:2rem;
+        flex-wrap: wrap;
+        width: 250px;
+        height: 190px;
+    }
+    footer {
+        text-align: center;
+    }
+    .textofooter {
+        font-size: 20px;
+    }
+    .logosredessociales {
+        width: 35px;
+        margin-left: 16px;
+    }
+    table {
+        width: 45vh;
+    }
+    th td {
+        font-size: 10px;
+    }
+    .containercard1 {
+        margin-bottom: 20px;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+        width: 50%;
+        height: 70vh;
+    }
+
+    .tamañoimg {
+        margin-left: -10px;
+        width: 130px;
+        height: 110px;
+}
+.subtitulocards {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px !important;
+}
+.parrafoytitulo {
+    font-size: 12px;
+}
+}
