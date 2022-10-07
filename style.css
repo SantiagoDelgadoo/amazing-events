@@ -148,6 +148,8 @@ footer {
 
 .tamañoform {
     width: 350px;
+    border: solid 3px;
+    border-color: rgb(175, 39, 175) !important;
 }
 
 .formulariomensaje {
@@ -164,9 +166,14 @@ table tbody tr td {
     border: solid 1px black;
 }
 
-.segundacategoria {
-    background-color: lightcoral !important;
+.tablastr {
+    background-color: rgb(175, 39, 175);
 }
+
+.segundacategoria {
+    background-color: violet !important;
+}
+
 
 .formularioboton {   
     background-color: rgb(175, 39, 175);
@@ -228,6 +235,7 @@ table tbody tr td {
 }
 
 @media screen and (max-width: 768px) {
+
     .logo {
         width: 130px;
     }
