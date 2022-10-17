@@ -4,7 +4,7 @@ for (i = 0; i < events.length; i++) {
   cartas.className = "card my-4";
   cartas.innerHTML += `
   <div class="card ">
-                <img src="${events[i].image}" class=" imgcards card-img-top" alt="Imagen de cine">
+                <img src="${events[i].image}" class=" imgcards card-img-top" alt="${events[i].name}">
                 <div class="card-body text-center">
                     <h5 class="card-title text-center">${events[i].name}</h5>
                     <p class="card-text">${events[i].description}</p>
@@ -18,3 +18,16 @@ for (i = 0; i < events.length; i++) {
 
   container.appendChild(cartas);
 }
+
+
+let contenedorForm = document.getElementById("checkboxDeForm");
+let arrayDeCategorias = events.map ((evento)=>evento.category)   //=> es = return
+let arrayDeCategoriasSeteadas = new Set (arrayDeCategorias)
+function imprimirCheckbox (categoria){
+    contenedorForm.innerHTML += `
+    <label class= "px-3" >${categoria}
+    <input type="checkbox" name="${categoria}">
+    </label>
+    `;
+}
+arrayDeCategoriasSeteadas.forEach (imprimirCheckbox)
