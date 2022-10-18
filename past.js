@@ -10,7 +10,7 @@ for (i = 0; i < events.length; i++) {
                     <p class="card-text">${events[i].description}</p>
                     <div class="d-flex justify-content-between ">
                         <p>Price: ${events[i].price}</p>
-                        <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                        <a href="details.html?evento=${events[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@ search.addEventListener("change", (evento) => {
 
     container.innerHTML = " "
 
-
+//------------------------------------------------FILTRA POR SEARCH--------------------------------------------------//
 
 
     for (i = 0; i < nombreDeEventosFiltrados.length; i++) {
@@ -63,7 +63,7 @@ search.addEventListener("change", (evento) => {
                         <p class="card-text">${nombreDeEventosFiltrados[i].description}</p>
                         <div class="d-flex justify-content-between ">
                             <p>Price: ${nombreDeEventosFiltrados[i].price}</p>
-                        <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                            <a href="details.html?evento=${nombreDeEventosFiltrados[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,8 @@ console.log(eventosCheckeados);
                         <p class="card-text">${eventosCheckeados[i].description}</p>
                         <div class="d-flex justify-content-between ">
                             <p>Price: ${eventosCheckeados[i].price}</p>
-                        <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                            <a href="details.html?evento=${eventosCheckeados[i]._id}" class="boton btn btn-primary">Go somewhere</a>
+
                         </div>
                     </div>
                 </div>
@@ -129,7 +130,7 @@ console.log(eventosCheckeados);
                             <p class="card-text">${pastEvents[i].description}</p>
                             <div class="d-flex justify-content-between ">
                                 <p>Price: ${pastEvents[i].price}</p>
-                                <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                                <a href="details.html?evento=${events[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
         

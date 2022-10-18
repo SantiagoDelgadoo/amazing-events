@@ -12,7 +12,7 @@ for (i = 0; i < events.length; i++) {
                     <p class="card-text">${events[i].description}</p>
                     <div class="d-flex justify-content-between ">
                         <p>Price: ${events[i].price}</p>
-                        <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                        <a href="details.html?evento=${events[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ enviarInfo.addEventListener("change", (evento) => {
                         <p class="card-text">${nombreDeEventosFiltrados[i].description}</p>
                         <div class="d-flex justify-content-between ">
                             <p>Price: ${nombreDeEventosFiltrados[i].price}</p>
-                        <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                            <a href="details.html?evento=${nombreDeEventosFiltrados[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ contenedorForm.addEventListener("change", (evento) => {
                         <p class="card-text">${eventosCheckeados[i].description}</p>
                         <div class="d-flex justify-content-between ">
                             <p>Price: ${eventosCheckeados[i].price}</p>
-                        <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                            <a href="details.html?evento=${eventosCheckeados[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@ contenedorForm.addEventListener("change", (evento) => {
                         <p class="card-text">${events[i].description}</p>
                         <div class="d-flex justify-content-between ">
                             <p>Price: ${events[i].price}</p>
-                            <a href="details.html" class="boton btn btn-primary">Go somewhere</a>
+                            <a href="details.html?evento=${events[i]._id}" class="boton btn btn-primary">Go somewhere</a>
                         </div>
                     </div>
     
@@ -153,6 +153,38 @@ contenedorForm.addEventListener("change", (evento) => {
 
 
 
+//-----------------------------------------COMBINACION DE CHECKBOX Y SEARCH-------------------------------------------//
+
+let containerDetails = document.getElementById("containerCardDetails");
+
+console.log(location);
+console.log(location.search);
+let indice = Number(location.search.slice(8))
+console.log(indice);
+let eventoSeleccionado = events.filter((events) => events._id === indice)
+console.log(eventoSeleccionado);
+console.log(eventoSeleccionado);
+
+for (i = 0; i <= eventoSeleccionado.length; i++) {
+    containerDetails.innerHTML = `
+    <div class="containercard1">
+    <div class="imagendetails">
+        <img src="${eventoSeleccionado[i].image}" class="tamañoimg" alt="${eventoSeleccionado[i].name}">
+    </div>
+    <div class="parrafoytitulo">
+        <h4 class="subtitulocards">${eventoSeleccionado[i].name}</h4>
+        <p>${eventoSeleccionado[i].description}</p>
+        <p> <span class= "spanDetails" >Date:</span> ${eventoSeleccionado[i].date}</p>
+        <p><span class= "spanDetails" > Category:</span> ${eventoSeleccionado[i].category}</p>
+        <p><span class= "spanDetails" > Place: </span>${eventoSeleccionado[i].place}</p>
+        <p><span class= "spanDetails" > Capacity:</span> ${eventoSeleccionado[i].capacity}</p>
+        <p> <span class= "spanDetails"> Assistance:</span> ${eventoSeleccionado[i].assistance}</p>
+        <p> <span class= "spanDetails"> Price:</span> $${eventoSeleccionado[i].price}</p>
+        
+    </div>
+</div>
+    `;
+}
 
 
 
