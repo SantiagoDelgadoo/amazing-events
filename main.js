@@ -1,29 +1,27 @@
 
 //---------------------------------------------IMPRIMO LAS CARDS--------------------------------------------------//
 
-let container = document.getElementById("cartas-home");
-function imprimir (arreglo){
-for (i = 0; i < arreglo.length; i++) {
-    let cartas = document.createElement("div");
-    cartas.className = "card m-4";
-    cartas.innerHTML += `
-                <img src="${arreglo[i].image}" class=" imgcards card-img-top" alt="${arreglo[i].name}">
+let containerEventos = document.getElementById("cartas-home") //creo una variable y llamo con id donde se van a imprimir las cards
+// declaro una funcion que se llama imprimirCards y le doy dos parametros, declaro una seccion vacia dentro del html, hago que se recorra el array de eventos y uso forEach para que recorra el array y por cada evento que encuentre cree un div, despues le doy una clase y le decis que va a tener adentro
+function imprimirCards(arrayDeEventos, seccion) {
+    seccion.innerHTML = " "
+    arrayDeEventos.forEach(evento => {
+        let cartas = document.createElement("div");
+        cartas.className = "card m-4";
+        cartas.innerHTML += `
+                <img src="${evento.image}" class=" imgcards card-img-top" alt="${evento.name}">
                 <div class="card-body text-center">
-                    <h5 class="card-title text-center">${arreglo[i].name}</h5>
-                    <p class="card-text">${arreglo[i].description}</p>
+                    <h5 class="card-title text-center">${evento.name}</h5>
+                    <p class="card-text">${evento.description}</p>
                     <div class="d-flex justify-content-between ">
-                        <p>Price: ${arreglo[i].price}</p>
-                        <a href="details.html?evento=${arreglo[i]._id}" class="boton btn btn-primary">Go somewhere</a>
+                        <p>Price: ${evento.price}</p>
+                        <a href="details.html?evento=${evento._id}" class="boton btn btn-primary">Go somewhere</a>
                     </div>
-                </div>
-
-  `;
-
-    container.appendChild(cartas);
-}
-}
-imprimir (events)
-
+                </div>`
+        seccion.appendChild(cartas)
+    })
+};
+imprimirCards(events, containerEventos) //llamo a la funcion y le paso los parametros
 
 
 
@@ -44,27 +42,43 @@ function imprimirCheckbox(categoria) {
 }
 arrayDeCategoriasSeteadas.forEach(imprimirCheckbox)
 
-//---------------------------------------------FILTRO DE TEXTO EN SEARCH--------------------------------------//
+
+contenedorForm.addEventListener('change', () => {
+    let filtroCheckbox = filtrosCruzados(events)
+    let filtroCheckbox2 = filtroTexto(filtroCheckbox, search.value)
+    if (filtroCheckbox2.length != 0) {
+        imprimirCards(filtroCheckbox2, containerEventos)
+    }
+    else {
+        containerEventos.innerHTML = `<h6>no results found for your search</h6>`
+
+    }
+
+});
 
 
+//----------------------------------------FILTRO DE TEXTO EN SEARCH--------------------------------------//
 
 
+let search = document.getElementById("enviarInfo") //declaro una variable que me traiga el buscador de palabras
+search.addEventListener("keyup", () => {
+    let nombreFiltrado = filtroTexto(events, search.value)
+    let nombreFiltrado2 = filtrosCruzados(nombreFiltrado)
+    if (nombreFiltrado2.length != 0) {
+        imprimirCards(nombreFiltrado2, containerEventos)
+    }
+    else {
+        containerEventos.innerHTML = `<h6>no results found for your search</h6>`
+    }
 
-
-
-
-let search = document.getElementById("enviarInfo")
-enviarInfo.addEventListener("change", (evento) => {
-    let nombreFiltrado = evento.target.value
-    let nombreDeEventosFiltrados = events.filter((evento) => (evento.name.toLowerCase()).includes(nombreFiltrado.toLowerCase()))
-
-
-    container.innerHTML = " "
-
-imprimir (nombreDeEventosFiltrados)
 
 })
 
+function filtroTexto(datos, datosObtenidos) {
+    let buscado = datos.filter(evento => evento.name.toLowerCase().includes(datosObtenidos.toLowerCase()))
+    return buscado
+
+}
 
 
 
@@ -72,28 +86,30 @@ imprimir (nombreDeEventosFiltrados)
 
 let containerDeCategoriasCheckeadas = []
 
-contenedorForm.addEventListener("change", (evento) => {
-    if (evento.target.checked) {
-        containerDeCategoriasCheckeadas.push(evento.target.value);
+
+
+
+
+function filtrosCruzados(dato) {
+    let checkboxActivo = document.querySelectorAll("input[type='checkbox']")
+    let filtro = []
+    let seleccionados = Array.from(checkboxActivo).filter( e => e.checked).map(check => check.value)
+    filtro = dato.filter(e => seleccionados.includes(e.category))
+    if (seleccionados.length == 0) {
+        filtro = dato
     }
-    else {
-        let posicionEnElArray = containerDeCategoriasCheckeadas.indexOf(evento.target.value); // obtenemos el indice
-        containerDeCategoriasCheckeadas.splice(posicionEnElArray, 1); // 1 es la cantidad de elemento a eliminar 
-    }
-    let eventosCheckeados = events.filter((evento) => containerDeCategoriasCheckeadas.includes(evento.category))
-    container.innerHTML = " "
+    return filtro
 
-    if (eventosCheckeados.length !== 0) {
-        imprimir (eventosCheckeados)
+}
 
 
-    } else {
-        
-        imprimir (events)
 
-    }
 
-})
+
+
+
+
+
 
 
 
