@@ -1,16 +1,16 @@
-let containerDetails = document.getElementById("containerCardDetails");
+let containerDetails = document.getElementById("containerCardDetails");     
 
 console.log(location);
 console.log(location.search);
-let indice = Number(location.search.slice(8))
+let indice = Number(location.search.slice(8)) //aca guardo el valor del id de mi evento y lo convierto en numero
 console.log(indice);
-let eventoSeleccionado = events.filter((events) => events._id === indice)
+let eventoSeleccionado = events.filter((events) => events._id === indice) //va a filtrar los eventos q el id sea igual al indice
 console.log(eventoSeleccionado);
 console.log(eventoSeleccionado);
 
-for (i = 0; i <= eventoSeleccionado.length; i++) {
+for (i = 0; i <= eventoSeleccionado.length; i++) { //cambie el a con main.js para que no me mande siempre al mismo details
     containerDetails.innerHTML = `
-    <div class="containercard1">
+    <div class="containercard1 d-flex flex-column flex-md-row"> 
     <div class="imagendetails">
         <img src="${eventoSeleccionado[i].image}" class="tamañoimg" alt="${eventoSeleccionado[i].name}">
     </div>

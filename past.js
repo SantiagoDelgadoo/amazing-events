@@ -1,8 +1,7 @@
 //---------------------------------------------IMPRIMO LAS CARDS--------------------------------------------------//
 
 let eventosPast = events.filter (e=>(e.date < currentDate))
-let containerEventos = document.getElementById("cartas-home") //creo una variable y llamo con id donde se van a imprimir las cards
-// declaro una funcion que se llama imprimirCards y le doy dos parametros, declaro una seccion vacia dentro del html, hago que se recorra el array de eventos y uso forEach para que recorra el array y por cada evento que encuentre cree un div, despues le doy una clase y le decis que va a tener adentro
+let containerEventos = document.getElementById("cartas-home")  
 function imprimirCards(arrayDeEventos, seccion) {
     seccion.innerHTML = " "
     arrayDeEventos.forEach(evento => {

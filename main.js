@@ -1,10 +1,10 @@
 
+
 //---------------------------------------------IMPRIMO LAS CARDS--------------------------------------------------//
 
-let containerEventos = document.getElementById("cartas-home") //creo una variable y llamo con id donde se van a imprimir las cards
-// declaro una funcion que se llama imprimirCards y le doy dos parametros, declaro una seccion vacia dentro del html, hago que se recorra el array de eventos y uso forEach para que recorra el array y por cada evento que encuentre cree un div, despues le doy una clase y le decis que va a tener adentro
+let containerEventos = document.getElementById("cartas-home") 
 function imprimirCards(arrayDeEventos, seccion) {
-    seccion.innerHTML = " "
+    seccion.innerHTML = " " //declaro
     arrayDeEventos.forEach(evento => {
         let cartas = document.createElement("div");
         cartas.className = "card m-4";
@@ -21,7 +21,7 @@ function imprimirCards(arrayDeEventos, seccion) {
         seccion.appendChild(cartas)
     })
 };
-imprimirCards(events, containerEventos) //llamo a la funcion y le paso los parametros
+imprimirCards(events, containerEventos) 
 
 
 
@@ -31,8 +31,8 @@ imprimirCards(events, containerEventos) //llamo a la funcion y le paso los param
 //---------------------------------------ACA ARRANCO A IMPRIMIR LOS CHECKBOX--------------------------------------//
 
 let contenedorForm = document.getElementById("checkboxDeForm");
-let arrayDeCategorias = events.map((evento) => evento.category)   //=> es = return
-let arrayDeCategoriasSeteadas = new Set(arrayDeCategorias) //set elimina repetidos
+let arrayDeCategorias = events.map((evento) => evento.category)  
+let arrayDeCategoriasSeteadas = new Set(arrayDeCategorias) //set es una lista sin repetir
 function imprimirCheckbox(categoria) {
     contenedorForm.innerHTML += `
     <label class= "px-3" >${categoria}
@@ -43,27 +43,20 @@ function imprimirCheckbox(categoria) {
 arrayDeCategoriasSeteadas.forEach(imprimirCheckbox)
 
 
-contenedorForm.addEventListener('change', () => {
-    let filtroCheckbox = filtrosCruzados(events)
-    let filtroCheckbox2 = filtroTexto(filtroCheckbox, search.value)
-    if (filtroCheckbox2.length != 0) {
-        imprimirCards(filtroCheckbox2, containerEventos)
-    }
-    else {
-        containerEventos.innerHTML = `<h6>no results found for your search</h6>`
-
-    }
-
-});
-
 
 //----------------------------------------FILTRO DE TEXTO EN SEARCH--------------------------------------//
+
+function filtroTexto(datos, datosObtenidos) {
+    let buscado = datos.filter(evento => evento.name.toLowerCase().includes(datosObtenidos.toLowerCase()))
+    return buscado
+}
+
 
 
 let search = document.getElementById("enviarInfo") //declaro una variable que me traiga el buscador de palabras
 search.addEventListener("keyup", () => {
-    let nombreFiltrado = filtroTexto(events, search.value)
-    let nombreFiltrado2 = filtrosCruzados(nombreFiltrado)
+    let nombreFiltrado = filtroTexto(events, search.value) //value= lo q escribio la persona
+    let nombreFiltrado2 = filtroCheckBox(nombreFiltrado)
     if (nombreFiltrado2.length != 0) {
         imprimirCards(nombreFiltrado2, containerEventos)
     }
@@ -74,12 +67,6 @@ search.addEventListener("keyup", () => {
 
 })
 
-function filtroTexto(datos, datosObtenidos) {
-    let buscado = datos.filter(evento => evento.name.toLowerCase().includes(datosObtenidos.toLowerCase()))
-    return buscado
-
-}
-
 
 
 //----------------------------------------------ACA FILTRO POR CHECKBOX-----------------------------------------//
@@ -87,21 +74,28 @@ function filtroTexto(datos, datosObtenidos) {
 let containerDeCategoriasCheckeadas = []
 
 
-
-
-
-function filtrosCruzados(dato) {
+function filtroCheckBox(dato) {
     let checkboxActivo = document.querySelectorAll("input[type='checkbox']")
     let filtro = []
-    let seleccionados = Array.from(checkboxActivo).filter( e => e.checked).map(check => check.value)
-    filtro = dato.filter(e => seleccionados.includes(e.category))
+    let seleccionados = Array.from(checkboxActivo).filter( e => e.checked).map(check => check.value) //array.from hace que meta los checks en un array cada e es cada checkbox y este caso value es el nombre de la categoria
+    filtro = dato.filter(e => seleccionados.includes(e.category)) //e en este es caso es evento y aca se compara solo el value de los seleccionados de arriba
     if (seleccionados.length == 0) {
-        filtro = dato
+        filtro = dato //muestra todos
     }
-    return filtro
+    return filtro //retorna el marcado
 
 }
 
+contenedorForm.addEventListener('change', () => {
+    let filtroCheckbox = filtroCheckBox(events)
+    let filtroCheckbox2 = filtroTexto(filtroCheckbox, search.value)
+    if (filtroCheckbox2.length != 0) {
+        imprimirCards(filtroCheckbox2, containerEventos)
+    }
+    else {
+        containerEventos.innerHTML = `<h6>no results found for your search</h6>`
+    }
+});
 
 
 
