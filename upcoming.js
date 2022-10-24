@@ -15,7 +15,7 @@ function imprimirCards(arrayDeEventos, seccion) {
                     <p class="card-text">${evento.description}</p>
                     <div class="d-flex justify-content-between ">
                         <p>Price: ${evento.price}</p>
-                        <a href="details.html?evento=${evento._id}" class="boton btn btn-primary">Go somewhere</a>
+                        <a href="details.html?evento=${evento._id}" class="boton btn btn-primary">More information</a>
                     </div>
                 </div>`
         seccion.appendChild(cartas)

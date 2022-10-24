@@ -15,7 +15,7 @@ function imprimirCards(arrayDeEventos, seccion) {
                     <p class="card-text">${evento.description}</p>
                     <div class="d-flex justify-content-between ">
                         <p>Price: ${evento.price}</p>
-                        <a href="details.html?evento=${evento._id}" class="boton btn btn-primary">Go somewhere</a>
+                        <a href="details.html?evento=${evento._id}" class="boton btn btn-primary">More information</a>
                     </div>
                 </div>`
         seccion.appendChild(cartas)
@@ -77,7 +77,10 @@ let containerDeCategoriasCheckeadas = []
 function filtroCheckBox(dato) {
     let checkboxActivo = document.querySelectorAll("input[type='checkbox']")
     let filtro = []
-    let seleccionados = Array.from(checkboxActivo).filter( e => e.checked).map(check => check.value) //array.from hace que meta los checks en un array cada e es cada checkbox y este caso value es el nombre de la categoria
+
+    let seleccionados = Array.from(checkboxActivo).filter( e => e.checked).map(check => check.value) //array.from hace que meta los
+    //checks en un array cada e es cada checkbox y este caso value es el nombre de la categoria
+
     filtro = dato.filter(e => seleccionados.includes(e.category)) //e en este es caso es evento y aca se compara solo el value de los seleccionados de arriba
     if (seleccionados.length == 0) {
         filtro = dato //muestra todos
