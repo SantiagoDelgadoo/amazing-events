@@ -15,13 +15,12 @@ function imprimirCards(arrayDeEventos, seccion) {
                     <p class="card-text">${evento.description}</p>
                     <div class="d-flex justify-content-between ">
                         <p>Price: ${evento.price}</p>
-                        <a href="details.html?evento=${evento._id}" class="boton btn btn-primary">More information</a>
+                        <a href="details.html?evento=${evento.id}" class="boton btn btn-primary">More information</a> 
                     </div>
                 </div>`
         seccion.appendChild(cartas)
     })
 };
-imprimirCards(events, containerEventos) 
 
 
 
@@ -31,8 +30,7 @@ imprimirCards(events, containerEventos)
 //---------------------------------------ACA ARRANCO A IMPRIMIR LOS CHECKBOX--------------------------------------//
 
 let contenedorForm = document.getElementById("checkboxDeForm");
-let arrayDeCategorias = events.map((evento) => evento.category)  
-let arrayDeCategoriasSeteadas = new Set(arrayDeCategorias) //set es una lista sin repetir
+
 function imprimirCheckbox(categoria) {
     contenedorForm.innerHTML += `
     <label class= "px-3" >${categoria}
@@ -40,11 +38,37 @@ function imprimirCheckbox(categoria) {
     </label>
     `;
 }
+
+
+
+
+//---------------------------------------------------TASK 4------------------------------------------------------------------------//
+
+
+async function task4 (){ //declaro funcion async porque va a esperar a que le llegue el dato y despues va a seguir leyendo el codigo
+let api = await fetch ('https://mind-hub.up.railway.app/amazing') //declaro una variable le doy de nombre api lo igualo a await fetch
+//await espera la consulta y una vez que fetch devuelve el dato lo guarda en api
+//fetch lo q hace en este caso es consultarle a la api y me va a devolver una promesa y pongo el link de la api
+console.log(api);
+api = await api.json () //convierto lo que me pasa la api a un json porque yo necesito algun dato de los eventos, es decir que lo pasa
+//como texto plano y yo lo convierto a json y vuelvo a usar await porque la conversion de api a json tarda un tiempo
+console.log(api);
+
+let date = api.date
+console.log(date);
+
+let events = api.events
+console.log(events);
+
+imprimirCards(events, containerEventos) //esto es de imprimir las cards
+
+//esto es de imprimir por checkbox
+let arrayDeCategorias = events.map((evento) => evento.category)  
+let arrayDeCategoriasSeteadas = new Set(arrayDeCategorias) //set es una lista sin repetir
 arrayDeCategoriasSeteadas.forEach(imprimirCheckbox)
 
 
-
-//----------------------------------------FILTRO DE TEXTO EN SEARCH--------------------------------------//
+//FILTRO DE TEXTO EN SEARCH
 
 function filtroTexto(datos, datosObtenidos) {
     let buscado = datos.filter(evento => evento.name.toLowerCase().includes(datosObtenidos.toLowerCase()))
@@ -69,7 +93,7 @@ search.addEventListener("keyup", () => {
 
 
 
-//----------------------------------------------ACA FILTRO POR CHECKBOX-----------------------------------------//
+//ACA FILTRO POR CHECKBOX
 
 let containerDeCategoriasCheckeadas = []
 
@@ -100,11 +124,9 @@ contenedorForm.addEventListener('change', () => {
     }
 });
 
+}
 
-
-
-
-
+task4 ()
 
 
 

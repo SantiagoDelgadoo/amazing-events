@@ -1,13 +1,30 @@
 let containerDetails = document.getElementById("containerCardDetails");     
 
-console.log(location);
-console.log(location.search);
-let indice = Number(location.search.slice(8)) //aca guardo el valor del id de mi evento y lo convierto en numero
-console.log(indice);
-let eventoSeleccionado = events.filter((events) => events._id === indice) //va a filtrar los eventos q el id sea igual al indice
-console.log(eventoSeleccionado);
-console.log(eventoSeleccionado);
 
+//
+
+async function task4 (){ //declaro funcion async porque va a esperar a que le llegue el dato y despues va a seguir leyendo el codigo
+    let api = await fetch ('https://mind-hub.up.railway.app/amazing') //declaro una variable le doy de nombre api lo igualo a await fetch
+    //await espera la consulta y una vez que fetch devuelve el dato lo guarda en api
+    //fetch lo q hace en este caso es consultarle a la api y me va a devolver una promesa y pongo el link de la api
+    console.log(api);
+    api = await api.json () //convierto lo que me pasa la api a un json porque yo necesito algun dato de los eventos, es decir que lo pasa
+    //como texto plano y yo lo convierto a json y vuelvo a usar await porque la conversion de api a json tarda un tiempo
+    console.log(api);
+    
+    let date = api.date
+    console.log(date);
+    
+    let events = api.events
+    console.log(events);
+
+//
+let indice = (location.search.slice(8)) //aca guardo el valor del id de mi evento
+console.log(indice);
+let eventoSeleccionado = events.filter((events) => events.id === indice) //va a filtrar los eventos q el id sea igual al indice
+console.log(eventoSeleccionado);
+console.log(eventoSeleccionado);
+//
 for (i = 0; i <= eventoSeleccionado.length; i++) { //cambie el a con main.js para que no me mande siempre al mismo details
     containerDetails.innerHTML = `
     <div class="containercard1 d-flex flex-column flex-md-row"> 
@@ -28,3 +45,5 @@ for (i = 0; i <= eventoSeleccionado.length; i++) { //cambie el a con main.js par
 </div>
     `;
 }
+}
+task4 ()
