@@ -46,7 +46,7 @@ function imprimirCheckbox(categoria) {
 
 
 async function task4 (){ //declaro funcion async porque va a esperar a que le llegue el dato y despues va a seguir leyendo el codigo
-    let api = await fetch ('https://mind-hub.up.railway.app/amazing') //declaro una variable le doy de nombre api lo igualo a await fetch
+    let api = await fetch ('https://mh-amazing.herokuapp.com/amazing') //declaro una variable le doy de nombre api lo igualo a await fetch
     //await espera la consulta y una vez que fetch devuelve el dato lo guarda en api
     //fetch lo q hace en este caso es consultarle a la api y me va a devolver una promesa y pongo el link de la api
     console.log(api);
