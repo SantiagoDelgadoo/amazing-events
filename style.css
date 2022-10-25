@@ -19,6 +19,18 @@ h2 {
     font-weight: bold !important;
 }
 
+.containerTitulo {
+    height: 45px;
+}
+
+.contenedorTextoCard {
+    height: 120px;
+}
+
+.containerPrecio {
+    height: 40px;
+}
+
 main {
     min-height: 70vh; 
     width: 100%;
@@ -288,7 +300,7 @@ table tbody tr td {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
 
     .logo {
         width: 30px;
@@ -307,7 +319,7 @@ table tbody tr td {
         height: 280px;
     }
     table {
-        width: 70vh;
+        width: 70vw;
     }
 
     .containercard1 {

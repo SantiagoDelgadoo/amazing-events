@@ -11,9 +11,13 @@ function imprimirCards(arrayDeEventos, seccion) {
         cartas.innerHTML += `
                 <img src="${evento.image}" class=" imgcards card-img-top" alt="${evento.name}">
                 <div class="card-body text-center">
+                <div class="containerTitulo">
                     <h5 class="card-title text-center">${evento.name}</h5>
+                    </div>
+                    <div class="contenedorTextoCard">
                     <p class="card-text">${evento.description}</p>
-                    <div class="d-flex justify-content-between ">
+                    </div>
+                    <div class="containerPrecio d-flex justify-content-between ">
                         <p>Price: ${evento.price}</p>
                         <a href="details.html?evento=${evento.id}" class="boton btn btn-primary">More information</a> 
                     </div>

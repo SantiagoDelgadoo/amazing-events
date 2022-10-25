@@ -34,7 +34,7 @@ for (i = 0; i <= eventoSeleccionado.length; i++) { //cambie el a con main.js par
     <div class="parrafoytitulo">
         <h4 class="subtitulocards">${eventoSeleccionado[i].name}</h4>
         <p>${eventoSeleccionado[i].description}</p>
-        <p> <span class= "spanDetails" >Date:</span> ${eventoSeleccionado[i].date}</p>
+        <p> <span class= "spanDetails" >Date:</span> ${eventoSeleccionado[i].date.slice(0,10)}</p>
         <p><span class= "spanDetails" > Category:</span> ${eventoSeleccionado[i].category}</p>
         <p><span class= "spanDetails" > Place: </span>${eventoSeleccionado[i].place}</p>
         <p><span class= "spanDetails" > Capacity:</span> ${eventoSeleccionado[i].capacity}</p>

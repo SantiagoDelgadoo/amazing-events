@@ -120,7 +120,89 @@ async function taskCuatro2() {
 
         for (i of eventsFilter) {
             segundaTabla.innerHTML +=
-            `
+                `
+                    <tr>
+                        <td>${i.name}</td>
+                        <td>${i.revenues}</td>
+                        <td>${(i.percentageOfAssitance).toFixed(2)}%</td>
+                    </tr> `;
+        }
+
+    } catch (error) {
+        console.log("Hubo un error");
+    }
+
+
+}
+//UPCOMING
+async function taskCuatro3() {
+    try {
+        let data = await fetch(
+            "https://mh-amazing.herokuapp.com/amazing?time=upcoming"
+        );
+        data = await data.json();
+        let events = data.events;
+        events.map((event) => {
+            event.percentageOfAssitance = (
+                (event.estimate / event.capacity) *
+                100
+            ).toFixed(2);
+            event.revenues = event.estimate * event.price;
+        });
+        let EventsForCategory = [];
+        EventsForCategory.push(events.filter((event) => event.category === "Food"));
+        EventsForCategory.push(
+            events.filter((event) => event.category === "Cinema")
+        );
+        EventsForCategory.push(
+            events.filter((event) => event.category === "Party")
+        );
+        EventsForCategory.push(
+            events.filter((event) => event.category === "Books")
+        );
+        EventsForCategory.push(events.filter((event) => event.category === "Race"));
+        EventsForCategory.push(
+            events.filter((event) => event.category === "Concert")
+        );
+        EventsForCategory.push(
+            events.filter((event) => event.category === "Museum")
+        );
+        EventsForCategory = EventsForCategory.filter((array) => array.length !== 0);
+        let eventsFilter = [];
+
+        for (const categorys of EventsForCategory) {
+            let revenuesIni = 0;
+            let revenues1 = categorys.reduce(function (accumulator, element) {
+                return accumulator + element.revenues;
+            }, revenuesIni);
+
+            let capacityIni = 0;
+            let capacity1 = categorys.reduce(function (accumulator, element) {
+                return accumulator + element.capacity;
+            }, capacityIni);
+
+            let assisIni = 0;
+            let assis = categorys.reduce(function (
+                accumulator,
+                element
+            ) {
+                return accumulator + Number(element.estimate);
+            },
+                assisIni);
+
+            eventsFilter.push({
+                name: categorys[0].category,
+                revenues: revenues1,
+                capacity: capacity1,
+                percentageOfAssitance: assis * 100 / capacity1,
+            });
+
+        }
+        let terceraTabla = document.getElementById("terceraTabla")
+
+        for (i of eventsFilter) {
+            terceraTabla.innerHTML +=
+                `
                     <tr>
                         <td>${i.name}</td>
                         <td>${i.revenues}</td>
@@ -136,5 +218,7 @@ async function taskCuatro2() {
 }
 
 
+
+taskCuatro3();
 taskCuatro2();
-task4()
+task4();
